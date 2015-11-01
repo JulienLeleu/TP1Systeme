@@ -1,0 +1,112 @@
+_____________________________________
+|TP1 de systèmes					|
+|LICENCE PROFESSIONNELLE DA2I		|
+|JULIEN LELEU						|
+|___________________________________|
+
+Exercice (1)
+Q1/
+mkdir tpfs
+mkdir tpfs/a-faire
+mkdir tpfs/fait
+echo "a-faire" > tpfs/a-faire/Algo2
+echo "a-faire" > tpfs/a-faire/Anglais
+echo "a-faire" > tpfs/a-faire/Math
+echo "fait" > tpfs/fait/Gestion
+echo "fait" > tpfs/fait/Algo
+
+Q2/
+.1 cd a-faire
+.2 /home/infoetu/leleuj/systeme/tpfs-retour/fait/Gestion
+.3 fait/Gestion, depuis a-faire : ../fait/Gestion
+.4 a-faire/Anglais, depuis a-faire : Anglais
+
+Q3/  cat <NomDuFichier>
+
+Q4/ ls -i
+
+Q5/ [5639101]  tpfs
+    ├── [5639258]  a-faire
+    │   ├── [5639260]  Algo2
+    │   ├── [5639261]  Anglais
+    │   └── [5639262]  Math
+    └── [5639259]  fait
+        ├── [5639264]  Algo
+        └── [5639263]  Gestion
+
+Q6/ Numéro de périphérique pour tous : 39
+
+Q8/
+.1 cp Algo2 Algorithmique
+.2 cp Algo2 ../fait/Algo
+.3 mv Anglais English
+.4 mv English ../fait/English
+.5 ln Math Abandon
+.6 echo "regret" >> Abandon
+.7 cat Math
+.8 ln -s Abandon Persevere
+.9 cat Persevere
+.10 rm Abandon
+.11 cat Persevere
+.12 cat Math
+.13 mkdir plustard
+.14 On peut pas mettre un fichier sur deux systèmes de fichiers différents à cause des inodes. Par contre on peut créer un lien symbolique avec la commande ci-dessous :
+ln -s Math /tmp/Sauvegarde
+.15 les deux noms du repertoire a-faire : 'a-faire' et '.'
+
+Exercice (2)
+Q1/ gid = 1005; chmod 777 pour le rendre accessible
+commande ls -l pour voir les droits sur le repertoire
+
+Q2/ mkdir prive
+echo "leleuj" > prive/prive
+
+Q3/ chmod go-rwx prive/prive; non la commande n'est pas unique
+
+Q4/ 
+mkdir partage
+echo "leleuj" > partage/lecture
+chmod 742 partage/lecture
+echo "leleuj" > partage/ecriture
+chmod 750 partage/ecriture
+
+Q5/lire contenu du fichier prive : n'y arrive pas
+lire puis modifier le contenu de lecture : lire : réussi, modifier : n'y arrive pas
+ajouter le nom de login au fichier ecriture : réussi
+
+Q6/ chmod g+w partage
+Q7/ 
+Q8/ 
+
+Q9/ Le fichier se supprime : a cause des droits d'ecritures du dossier parent
+
+Q10/ Le fichier se supprime : a cause des droits d'ecritures du dossier parent pour le groupe
+
+Q11/ echo "echo Hello World" > salut
+
+Q12/ ./salut
+
+Q13/ 0022
+
+Q14/ mkdir tpfs/tmp
+
+Q15/ NAND
+
+Q16/ umask 0002
+
+Q17/ ls -l
+
+Exercice (3)
+Q1/
+.1 getent passwd | wc -l
+.2 getent passwd | cut -d: -f5 | cut -d' ' -f1 | sort | uniq | wc -l
+.3 getent passwd | cut -d: -f5 | cut -d' ' -f1 | sort | uniq -c | sort -n
+.4 getent passwd | cut -d: -f6 | cut -d/ -f3| grep infoetu | sort | uniq -c | sort -n
+.5 getent passwd | grep /home/infoetu | cut -d: -f5| tr ' ' '\t' | tee /dev/pts/3 | wc -l
+.6 getent passwd | cut -d: -f5 | cut -c1 | sort | uniq -ic | sort -n
+.7 getent passwd | cut -d: -f6 | grep /home | cut -d/ -f3 | sort| uniq | wc -l
+.8 getent passwd | cut -d: -f5 | cut -d' ' -f2 | sort | uniq -c | sort | grep 1 -vw
+
+Q2/
+.1 last | cut -d' ' -f1 | sort | uniq -c | sort -rn
+.2 last | cut -d' ' -f1 | grep -B1 'reboot' | sed "s/reboot/--/g" | grep -vw "-" | uniq
